@@ -1,9 +1,11 @@
-import React from 'react'
+import { NavLink } from "react-router-dom";
 
-export default function Navbar() {
-  return (
-    <div>
-      This is navbar PAGE
-    </div>
-  )
+
+export default function NavBar(props){
+  return(
+    <div className="navbar">
+      <NavLink to={{pathname: '/list'}}><button>Add new</button></NavLink>
+      <strong>Employee List</strong>
+    </div> 
+  );
 }
