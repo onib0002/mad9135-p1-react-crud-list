@@ -5,7 +5,7 @@ import ReadOnlyRow from "../ReadOnlyRow/ReadOnlyRow";
 import EditableRow from "../EditableRow/EditableRow";
 
 
-export default function ListView (props)  {
+export default function ListView(props)  {
   const [contacts, setContacts] = useState(data);
   const [addFormData, setAddFormData] = useState({
     fullName: "",
@@ -35,11 +35,16 @@ export default function ListView (props)  {
     setAddFormData(newFormData);
   };
 
-
   const handleEditFormChange = (event) => {
     event.preventDefault();
 
-    
+    const fieldName = event.target.getAttribute("name");
+    const fieldValue = event.target.value;
+
+    const newFormData = { ...editFormData };
+    newFormData[fieldName] = fieldValue;
+
+    setEditFormData(newFormData);
   };
 
   const handleAddFormSubmit = (event) => {
@@ -55,10 +60,6 @@ export default function ListView (props)  {
 
     const newContacts = [...contacts, newContact];
     setContacts(newContacts);
-  };
-
-
-    
   };
 
   const handleEditFormSubmit = (event) => {
@@ -82,25 +83,39 @@ export default function ListView (props)  {
     setEditContactId(null);
   };
 
-      const handleEditClick = (event, contact) => {
-        event.preventDefault();
-        setEditContactId(contact.id);
-    
-        const formValues = {
-          fullName: contact.fullName,
-          address: contact.address,
-          phoneNumber: contact.phoneNumber,
-          email: contact.email,
-        };
-    
-        setEditFormData(formValues);
-      };
+  const handleEditClick = (event, contact) => {
+    event.preventDefault();
+    setEditContactId(contact.id);
+
+    const formValues = {
+      fullName: contact.fullName,
+      address: contact.address,
+      phoneNumber: contact.phoneNumber,
+      email: contact.email,
+    };
+
+    setEditFormData(formValues);
+  };
 
   const handleCancelClick = () => {
-      };
+    setEditContactId(null);
+  };
+
+  const handleDeleteClick = (contactId) => {
+    const newContacts = [...contacts];
+
+    const index = contacts.findIndex((contact) => contact.id === contactId);
+
+    newContacts.splice(index, 1);
+
+    setContacts(newContacts);
+  };
 
   return (
     <div className="list-view">
+      {/* <header>
+        <Navbar/>
+      </header> */}
       <form onSubmit={handleEditFormSubmit}>
         <table>
           <thead>
@@ -115,12 +130,19 @@ export default function ListView (props)  {
           <tbody>
             {contacts.map((contact) => (
               <>
-                  <EditableRow />
-                  <ReadOnlyRow
-                   contact={contact}
-                    handleEditClick={handleEditClick}
+                {editContactId === contact.id ? (
+                  <EditableRow
+                    editFormData={editFormData}
+                    handleEditFormChange={handleEditFormChange}
+                    handleCancelClick={handleCancelClick}
                   />
-               
+                ) : (
+                  <ReadOnlyRow
+                    contact={contact}
+                    handleEditClick={handleEditClick}
+                    handleDeleteClick={handleDeleteClick}
+                  />
+                )}
               </>
             ))}
           </tbody>
@@ -129,5 +151,3 @@ export default function ListView (props)  {
     </div>
   );
 };
-
-
