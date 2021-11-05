@@ -1,47 +1,60 @@
 import React from "react";
-
+import { 
+  Button,
+  Input 
+} from "reactstrap";
 const EditableRow = ({
-  
+  editFormData,
+  handleEditFormChange,
+  handleCancelClick,
 }) => {
   return (
     <tr>
       <td>
-        <input
+        <Input
           type="text"
           required="required"
           placeholder="Enter a name..."
-          name="fullName">
-          </input>
+          name="fullName"
+          value={editFormData.fullName}
+          onChange={handleEditFormChange}
+        ></Input>
       </td>
       <td>
-        <input
+        <Input
           type="text"
           required="required"
           placeholder="Enter an address..."
-          name="address">
-          </input>
+          name="address"
+          value={editFormData.address}
+          onChange={handleEditFormChange}
+        ></Input>
       </td>
       <td>
-        <input
+        <Input
           type="text"
           required="required"
           placeholder="Enter a phone number..."
-          name="phoneNumber">
-          </input>
+          name="phoneNumber"
+          value={editFormData.phoneNumber}
+          onChange={handleEditFormChange}
+        ></Input>
       </td>
       <td>
-        <input
+        <Input
           type="email"
           required="required"
           placeholder="Enter an email..."
-          name="email">
-       </input>
+          name="email"
+          value={editFormData.email}
+          onChange={handleEditFormChange}
+        ></Input>
       </td>
       <td>
-        <button type="submit">Save</button>
-        <button type="button" >
+        <Button type="submit">Save</Button>
+        <Button type="button" onClick={handleCancelClick}>
           Cancel
-        </button>
+        </Button>
       </td>
     </tr>
   );
