@@ -44,12 +44,37 @@ export default function ListView (props)  {
   const handleEditFormSubmit = (event) => {
     event.preventDefault();
 
-      };
+    const editedContact = {
+      id: editContactId,
+      fullName: editFormData.fullName,
+      address: editFormData.address,
+      phoneNumber: editFormData.phoneNumber,
+      email: editFormData.email,
+    };
 
-  const handleEditClick = (event, contact) => {
-    event.preventDefault();
-    
+    const newContacts = [...contacts];
+
+    const index = contacts.findIndex((contact) => contact.id === editContactId);
+
+    newContacts[index] = editedContact;
+
+    setContacts(newContacts);
+    setEditContactId(null);
   };
+
+      const handleEditClick = (event, contact) => {
+        event.preventDefault();
+        setEditContactId(contact.id);
+    
+        const formValues = {
+          fullName: contact.fullName,
+          address: contact.address,
+          phoneNumber: contact.phoneNumber,
+          email: contact.email,
+        };
+    
+        setEditFormData(formValues);
+      };
 
   const handleCancelClick = () => {
       };
@@ -71,7 +96,10 @@ export default function ListView (props)  {
             {contacts.map((contact) => (
               <>
                   <EditableRow />
-                  <ReadOnlyRow/>
+                  <ReadOnlyRow
+                   contact={contact}
+                    handleEditClick={handleEditClick}
+                  />
                
               </>
             ))}
