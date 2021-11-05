@@ -1,9 +1,8 @@
 import React, { useState, Fragment } from "react";
 import { nanoid } from "nanoid";
-import "../App.css";
 import data from "../mock-data.json";
-import ReadOnlyRow from "./ReadOnlyRow";
-import EditableRow from "./EditableRow";
+import ReadOnlyRow from "../ReadOnlyRow/ReadOnlyRow";
+import EditableRow from "../EditableRow/EditableRow";
 
 
 export default function ListView (props)  {
@@ -27,7 +26,15 @@ export default function ListView (props)  {
   const handleAddFormChange = (event) => {
     event.preventDefault();
 
+    const fieldName = event.target.getAttribute("name");
+    const fieldValue = event.target.value;
+
+    const newFormData = { ...addFormData };
+    newFormData[fieldName] = fieldValue;
+
+    setAddFormData(newFormData);
   };
+
 
   const handleEditFormChange = (event) => {
     event.preventDefault();
@@ -37,6 +44,19 @@ export default function ListView (props)  {
 
   const handleAddFormSubmit = (event) => {
     event.preventDefault();
+
+    const newContact = {
+      id: nanoid(),
+      fullName: addFormData.fullName,
+      address: addFormData.address,
+      phoneNumber: addFormData.phoneNumber,
+      email: addFormData.email,
+    };
+
+    const newContacts = [...contacts, newContact];
+    setContacts(newContacts);
+  };
+
 
     
   };
