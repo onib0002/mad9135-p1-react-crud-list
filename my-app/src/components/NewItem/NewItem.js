@@ -20,6 +20,44 @@ export default function NewItem(props){
     email: "",
   });
 
+  const [editContactId, setEditContactId] = useState(null);
+
+    
+
+  const handleEditFormSubmit = (event) => {
+    event.preventDefault();
+
+    const editedContact = {
+      id: editContactId,
+      fullName: editFormData.fullName,
+      address: editFormData.address,
+      phoneNumber: editFormData.phoneNumber,
+      email: editFormData.email,
+    };
+
+    const newContacts = [...contacts];
+
+    const index = contacts.findIndex((contact) => contact.id === editContactId);
+
+    newContacts[index] = editedContact;
+
+    setContacts(newContacts);
+    setEditContactId(null);
+  };
+  const handleEditClick = (event, contact) => {
+    event.preventDefault();
+    setEditContactId(contact.id);
+
+    const formValues = {
+      fullName:  contact.fullName,
+      address: contact.address,
+      phoneNumber: contact.phoneNumber,
+      email: contact.email,
+    };
+
+    setEditFormData(formValues);
+  };
+
   
   return(
     <>
@@ -55,7 +93,12 @@ export default function NewItem(props){
           placeholder="Enter an email..."
           
         />
+        
+          
           <button className="btn btn-primary" to="/" >Add New</button>
+          
+        
+
       </form>
     </div>
 
