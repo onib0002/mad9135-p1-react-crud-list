@@ -1,12 +1,12 @@
-import React, {useState, useEffect} from "react"
+import React, { useState, Fragment } from "react";
 import { nanoid } from "nanoid";
-import data from "../mock-data.json";
-import { NavLink } from "react-router-dom";
-import {Nav, NavItem} from "reactstrap";
+import App from "../App";
+import ReadOnlyRow from "./ReadOnlyRow";
+import EditableRow from "./EditableRow";
 
-export default function NewItem(props){
-  const [contacts, setContacts] = useState(data);
-  console.log(contacts);
+
+export default function ListView (props)  {
+  const [contacts, setContacts] = useState(JSON.parse(localStorage.getItem('onibile')));
   const [addFormData, setAddFormData] = useState({
     fullName: "",
     address: "",
@@ -59,22 +59,8 @@ export default function NewItem(props){
     };
 
     const newContacts = [...contacts, newContact];
-    console.log("new contact", newContacts);
-    // data.push(newContact)
-    console.log('newdata', newContact);
-    console.log('data before', newContacts);
-    data.push(newContact)
-    // setContacts(newContacts);
-    // setContacts([...newContacts])
-    // setContacts(prevState => {
-    //   const data = [...prevState, newContact];
-    //   return {data};
-      
-    // });
-    setContacts([...data]);
-  
-    console.log('data after pusginh',contacts);
-    window.location.replace("/");
+    localStorage.setItem('onibile', JSON.stringify(newContacts));
+    setContacts(newContacts);
   };
 
   const handleEditFormSubmit = (event) => {
@@ -95,6 +81,8 @@ export default function NewItem(props){
     newContacts[index] = editedContact;
 
     setContacts(newContacts);
+    console.log(newContacts);
+    localStorage.setItem('onibile', JSON.stringify(newContacts))
     setEditContactId(null);
   };
 
@@ -103,7 +91,7 @@ export default function NewItem(props){
     setEditContactId(contact.id);
 
     const formValues = {
-      fullName:  contact.fullName,
+      fullName: contact.fullName,
       address: contact.address,
       phoneNumber: contact.phoneNumber,
       email: contact.email,
@@ -124,58 +112,43 @@ export default function NewItem(props){
     newContacts.splice(index, 1);
 
     setContacts(newContacts);
-  }
+    localStorage.setItem('onibile', JSON.stringify(newContacts))
+  };
 
-  return(
-    <>
-    {console.log("rendering")}
-    <div className="newItem">
-      <h2>Add a Contact</h2>
-      <form method="post">
-        <input
-          type="text"
-          name="fullName"
-          required="required"
-          placeholder="Enter a name..."
-          onChange={handleAddFormChange}
-        />
-        <input
-          type="text"
-          name="address"
-          required="required"
-          placeholder="Enter an addres..."
-          onChange={handleAddFormChange}
-        />
-        <input
-          type="text"
-          name="phoneNumber"
-          required="required"
-          placeholder="Enter a phone number..."
-          onChange={handleAddFormChange}
-        />
-        <input
-          type="email"
-          name="email"
-          required="required"
-          placeholder="Enter an email..."
-          onChange={handleAddFormChange}
-        />
-        
-          
-          <button className="btn btn-primary" to="/" onClick={handleAddFormSubmit}>Add New</button>
-          
-        
-
+  return (
+    <div className="list-view">
+      <form onSubmit={handleEditFormSubmit}>
+        <table>
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Address</th>
+              <th>Phone Number</th>
+              <th>Email</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {contacts.map((contact) => (
+              <>
+                {editContactId === contact.id ? (
+                  <EditableRow
+                    editFormData={editFormData}
+                    handleEditFormChange={handleEditFormChange}
+                    handleCancelClick={handleCancelClick}
+                  />
+                ) : (
+                  <ReadOnlyRow
+                    contact={contact}
+                    handleEditClick={handleEditClick}
+                    handleDeleteClick={handleDeleteClick}
+                  />
+                )}
+              </>
+            ))}
+          </tbody>
+        </table>
       </form>
     </div>
-
-    </>
   );
-}
-
-
-
-
-
-
-      
+};
