@@ -1,38 +1,147 @@
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.app-container {
   display: flex;
   flex-direction: column;
+  gap: 10px;
+  padding: 1rem;
+}
+h2{
+text-align: center;
+color: rgb(21, 5, 110)
+}
+a.navbar-brand{ 
+  text-align: center;
+  font-weight: bolder;
+}
+.btnAdd.btn.btn-secondary btn-sm{
+  margin-left: 15rem;
+ 
+}
+@media screen and (min-width: 400px) {
+  form {
+  border: 1px solid #f2f2f2;
+  background-color: #f2f2f2;
+  box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);;
+  border-radius: 5px;
+  padding: 2rem;
+  width: 30rem;
+  gap: 15px;
+  display: grid;
+  grid-template-columns: 200px 4fr;
+  font-size: 10px;
+  margin-left: 1rem; 
+  }
+}
+@media screen and (min-width: 900px) {
+  form {
+    
+    margin-right: auto; margin-left: auto; width: 21%; 
+    padding-top: 11px;
+    width: 30rem;
+  }
+}
+form * {
+  
+  font-size: 12px;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+}
+form td{
+  border-bottom: 1px solid rgb(35, 15, 150); 
+}
+input.form-control {
+  margin: 5rem;
+  padding: 12px 20px;
+  margin: 8px 0;
+  width: 210%;
+  align-items: center;
+}
+
+form td:last-child {
+  margin-bottom: 2rem;
+  justify-content: space-evenly;
+  margin-right: 10rem;
+}
+
+form.list-view{
+  display: flex;
+  width: 80%;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+  border-spacing: 0;
+}
+@media screen and (min-width: 400px) {
+table{
+  margin:0.5rem auto;
+  }
+}
+tr:nth-child(even){
+  background-color: #f2f2f2;
+}
+tr:nth-child(odd){
+  background-color: white;
+}
+
+td:hover {background-color: #ddd;}
+
+
+th,
+td {
+  border: 1px solid #ffffff;
+  text-align: left;
+  padding: 8px;
+}
+
+th {
+  background-color: rgb(11, 1, 68);
+  color: #f2f2f2;
+}
+
+
+
+.btn-info {
+  color: #000;
+  background-color: #0dcaf0;
+  border-color: #0dcaf0;
+  width: 100px;
+
+}
+
+@media screen and (min-width: 400px) {
+  .btn-info {
+  color: #000;
+  background-color: #0dcaf0;
+  border-color: #0dcaf0;
+  margin-top:1rem ;
+  margin-left: 2rem;
+  }
+}
+.btn-danger{
+  margin-top:1rem ;
+  margin-left: 2rem;
+  width: 100px;
+} 
+.button.btn.btn-primary {
   color: white;
-}
+  width: 100px;
 
-.App-link {
-  color: #61dafb;
 }
+.btn-secondary {
+  color: white;
+  width: 100px;
+  background-color: red;
+  float: right
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
 }
+.btn-success{
+  margin-top:1rem ;
+  margin-left: 2rem;
+  width: 100px;
+} 
+.btn-warning{
+  margin-top:1rem ;
+  margin-left: 2rem;
+  width: 100px;
+} 
+
