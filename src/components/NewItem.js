@@ -2,8 +2,6 @@ import React, {useState, useEffect} from "react"
 import { nanoid } from "nanoid";
 import { 
   Button,
-  Form,
-  FormGroup,
   Input,
   Label 
 } from "reactstrap";
@@ -61,7 +59,7 @@ export default function NewItem(props){
     {console.log("rendering")}
     <div className="newItem">
       <h2>Add a Contact</h2>
-      <form method="post">
+      <form method="post" className="addForm">
         <Input
           type="text"
           name="fullName"

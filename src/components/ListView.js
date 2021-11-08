@@ -3,7 +3,7 @@ import { nanoid } from "nanoid";
 import '../App.css'
 import ReadOnlyRow from "./ReadOnlyRow";
 import EditableRow from "./EditableRow";
-
+import { Form } from "reactstrap";
 
 export default function ListView (props)  {
   const [contacts, setContacts] = useState(JSON.parse(localStorage.getItem('onibile')));
@@ -117,7 +117,7 @@ export default function ListView (props)  {
 
   return (
     <div>
-      <form className="list-view" onSubmit={handleEditFormSubmit}>
+      <Form className="list-view" onSubmit={handleEditFormSubmit}>
         <table>
           <thead>
             <tr>
@@ -148,7 +148,7 @@ export default function ListView (props)  {
             ))}
           </tbody>
         </table>
-      </form>
+      </Form>
     </div>
   );
 };

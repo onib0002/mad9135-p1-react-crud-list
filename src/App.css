@@ -4,6 +4,7 @@
   gap: 10px;
   padding: 1rem;
 }
+
 h2{
 text-align: center;
 color: rgb(21, 5, 110)
@@ -17,7 +18,7 @@ a.navbar-brand{
  
 }
 @media screen and (min-width: 400px) {
-  form {
+  .addForm {
   border: 1px solid #f2f2f2;
   background-color: #f2f2f2;
   box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);;
@@ -32,7 +33,7 @@ a.navbar-brand{
   }
 }
 @media screen and (min-width: 900px) {
-  form {
+  .addForm {
     
     margin-right: auto; margin-left: auto; width: 21%; 
     padding-top: 11px;
@@ -40,8 +41,7 @@ a.navbar-brand{
   }
 }
 form * {
-  
-  font-size: 12px;
+  font-size: 10px;
   align-items: center;
 }
 form td{
@@ -63,12 +63,14 @@ form td:last-child {
 
 form.list-view{
   display: flex;
-  width: 80%;
+  min-width: 20rem;
+  margin-top: -8px;
+
 }
 
 table {
   border-collapse: collapse;
-  width: 100%;
+  min-width:50px;
   border-spacing: 0;
 }
 @media screen and (min-width: 400px) {
