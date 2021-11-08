@@ -1,6 +1,6 @@
 import React, { useState, Fragment } from "react";
 import { nanoid } from "nanoid";
-import App from "../App";
+import '../App.css'
 import ReadOnlyRow from "./ReadOnlyRow";
 import EditableRow from "./EditableRow";
 
@@ -116,8 +116,8 @@ export default function ListView (props)  {
   };
 
   return (
-    <div className="list-view">
-      <form onSubmit={handleEditFormSubmit}>
+    <div>
+      <form className="list-view" onSubmit={handleEditFormSubmit}>
         <table>
           <thead>
             <tr>

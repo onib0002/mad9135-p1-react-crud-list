@@ -10,13 +10,13 @@ import {
 
 export default function NavBar(props){
   return(
-    <Navbar color="dark" dark>
+    <Navbar light expand="md" color="dark" dark>
       <Container>
       <Nav>
           <NavLink to={{pathname: '/addList'}}>
-            <Button>Add new</Button></NavLink>
+            <Button className="btnAdd" size="sm" >Add new</Button></NavLink>
         </Nav>
-        <NavItem>Employee List</NavItem>
+        <NavbarBrand>Employee List</NavbarBrand>
       </Container>
     </Navbar>  
 

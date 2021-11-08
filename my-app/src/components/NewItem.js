@@ -1,5 +1,12 @@
 import React, {useState, useEffect} from "react"
 import { nanoid } from "nanoid";
+import { 
+  Button,
+  Form,
+  FormGroup,
+  Input,
+  Label 
+} from "reactstrap";
 
 export default function NewItem(props){
 
@@ -55,37 +62,37 @@ export default function NewItem(props){
     <div className="newItem">
       <h2>Add a Contact</h2>
       <form method="post">
-        <input
+        <Input
           type="text"
           name="fullName"
           required="required"
           placeholder="Enter a name..."
           onChange={handleAddFormChange}
-        />
-        <input
+        /><br/>
+        <Input
           type="text"
           name="address"
           required="required"
           placeholder="Enter an addres..."
           onChange={handleAddFormChange}
-        />
-        <input
+        /><br/>
+        <Input
           type="text"
           name="phoneNumber"
           required="required"
           placeholder="Enter a phone number..."
           onChange={handleAddFormChange}
-        />
-        <input
+        /><br/>
+        <Input
           type="email"
           name="email"
           required="required"
           placeholder="Enter an email..."
           onChange={handleAddFormChange}
-        />
+        /><br/>
         
           
-          <button className="btn btn-primary" to="/" onClick={handleAddFormSubmit}>Add New</button>
+          <Button className="btn btn-primary" color="primary" to="/" onClick={handleAddFormSubmit}>Add New</Button>
           
         
 
